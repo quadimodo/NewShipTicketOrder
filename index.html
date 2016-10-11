@@ -8,7 +8,7 @@
 		<script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
 	</head>
 	<body>
-		<div class="bg">
+		<div class="bg" >
 			<!- 标题栏 -->
 			<div class="title usual">
 				<div class="title_1">
@@ -51,10 +51,10 @@
 							<!--票类下拉框-->
 							
 								<select name="typeOfticket">
-									<option value="stander" selected="selected">普通</option>
-									<option value="solider">军人</option>
-									<option value="child">儿童</option>
-									<option value="stu">学生</option>
+									<option value="1" selected="selected">普通</option>
+									<option value="2">军人</option>
+									<option value="3">儿童</option>
+									<option value="4">学生</option>
 								</select>
 							
 							<!--姓名填写框-->
@@ -62,9 +62,9 @@
 							<!--证件类型下拉框-->
 							
 								<select name="typeOfid">
-									<option value="volvo" selected="selected">身份证</option>
-									<option value="saab">军人证</option>
-									<option value="fiat">港澳台通行证</option>
+									<option value="1" selected="selected">身份证</option>
+									<option value="2">军人证</option>
+									<option value="3">港澳台通行证</option>
 								</select>
 							
 							<!--证件号填写框-->
@@ -127,8 +127,13 @@
 			</div>
 		</div>
 		<script language="JavaScript">
-				var dachuan={name:"王大川",idcard:"234235234213452",mobile:"134451235235",typeOfticket:"solider",typeOfid:"volvo"};
-				var zhangsan={name:"张三",idcard:"2352125452325",mobile:"1353235232523",typeOfticket:"stu",typeOfid:"saab"};
+		
+				var dachuan={name:"王大川",idcard:"234235234213452",mobile:"134451235235",typeOfticket:"2",typeOfid:"2"};
+				var zhangsan={name:"张三",idcard:"378415745",mobile:"2542463465",typeOfticket:"3",typeOfid:"1"};
+				var lisi={name:"李四",idcard:"4512345343453",mobile:"4521223",typeOfticket:"4",typeOfid:"3"};
+				var wangwu={name:"王五",idcard:"93753543534",mobile:"789637735",typeOfticket:"1",typeOfid:"3"};
+				var zhaoliu={name:"赵六",idcard:"4453453241245",mobile:"7896787527",typeOfticket:"3",typeOfid:"2"};
+				var qianqi={name:"钱琪",idcard:"2352125452325",mobile:"1548487851",typeOfticket:"2",typeOfid:"3"};
 				/** 显示和隐藏**/
  				$(document).ready(function() {
                 	$("#gengduo").click(function() {
@@ -163,39 +168,39 @@
                 		
                 	})              	
                 });
+                
+                var selects=function(Object){
+        			//大川的车票类型
+        			$("li.fuck select[name='typeOfticket']").find("option[value='"+Object.typeOfticket+"']").attr("selected","selected");
+        			//大川的姓名
+        			$("#inputname:last").attr("value",Object.name);
+        			//大川的身份类型
+        			$("li.fuck select[name='typeOfid']").find("option[value='"+Object.typeOfid+"']").attr("selected","selected");
+        			//大川的身份证号
+        			$("li.fuck input.inputtext:eq(1)").attr("value",Object.idcard);
+        			//大川的电话号码
+        			$("input.inputtext:eq(2)").attr("value",Object.mobile);
+                }
                 /**$("#selIndustyType option[value='1']").attr("selected", "selected"); **/
                 var fuckAll=function(e){
                 	switch (e){
                 		case "1":
-                			var fuduix=$("#inputname:last").parent().siblings();
-                			//大川的车票类型
-                		
-                			fuduix[0].selectedIndex=2;
-//              			fuduix[0](option[value=dachuan.typeOfticket]).attr("selected","selected");
-                			//大川的姓名
-                			$("#inputname:last").attr("value",dachuan.name);
-                			//大川的身份类型
-                			fuduix[1].selectedIndex=2;
-                			//大川的身份证号
-                			fuduix[2].attr("text",dachuan.idcard);
-                			//大川的电话号码
-                			fuduix[3].parent().attr("text",dachuan.mobile);
-//              			$(#inputname).attr("value","张三");
+                			selects(dachuan);
                 			break;
                 		case "2":
-                		alert("2");
+                			selects(zhangsan);
                 			break;
             			case "3":
-            			alert("3");
+            				selects(lisi);
                 			break;
                 		case "4":
-                		alert("4");
+                			selects(wangwu);
                 			break;
             			case "5":
-            			alert("5");
+            				selects(zhaoliu);
                 			break;
                 		case "6":
-                		alert("6");
+                			selects(qianqi);
                 			break;
                 	}
                 }
